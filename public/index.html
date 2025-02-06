@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Closet - Your AI-Powered Fashion Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen relative overflow-hidden">
+
+  <!-- Thin Navbar -->
+  <nav class="bg-blue-500 py-2 px-8 flex justify-between items-center fixed w-full top-0 left-0 z-20">
+    <h1 class="text-xl font-semibold text-white">Closet</h1>
+    <div class="space-x-6">
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
+        Features
+      </button>
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
+        Contact Us
+      </button>
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
+        About
+      </button>
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
+        Get Started
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Dynamic Background -->
+  <header class="relative text-center py-20 px-6 mt-16 z-10">
+    <div class="absolute inset-0 flex justify-center items-center z-0">
+      <img src="images/top.png" alt="Top" class="absolute transition-all duration-1000" id="topClothing"/>
+      <img src="images/pants.png" alt="Bottom" class="absolute transition-all duration-1000" id="bottomClothing"/>
+    </div>
+    <div class="flex justify-center items-center">
+      <div class="text-left max-w-xl">
+        <h2 class="text-5xl font-bold text-gray-900 leading-tight">Your AI-Powered Fashion Assistant</h2>
+        <p class="mt-4 text-lg text-gray-600">
+          Try on outfits, get personalized fashion recommendations, and enhance your styling experience with Closet.
+        </p>
+        <button class="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-600 transition">
+          Explore Now
+        </button>
+      </div>
+    
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 px-8 text-center relative z-10">
+    <h3 class="text-3xl font-semibold text-gray-900">Features</h3>
+    <div class="mt-8 grid gap-8">
+      <div class="feature-item p-6 bg-white rounded-lg shadow-md">
+        <img src="images/Virtual fitting room.webp" alt="Virtual Try-On" class="mb-4">
+        <h4 class="text-xl font-medium text-blue-600">Virtual Try-On</h4>
+        <p class="text-gray-600">See how outfits look on you before making a purchase.</p>
+      </div>
+      <div class="feature-item p-6 bg-white rounded-lg shadow-md">
+        <img src="images/electronics-09-01814-g002.webp" alt="Custom Avatars" class="mb-4">
+        <h4 class="text-xl font-medium text-blue-600">Custom Avatars</h4>
+        <p class="text-gray-600">Create and personalize avatars for styling previews.</p>
+      </div>
+      <div class="feature-item p-6 bg-white rounded-lg shadow-md">
+        <img src="images/main-1.png.webp" alt="AI Styling Tips" class="mb-4">
+        <h4 class="text-xl font-medium text-blue-600">AI Styling Tips</h4>
+        <p class="text-gray-600">Get expert advice and recommendations based on AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 bg-gray-100 text-center">
+    <p class="text-gray-600">© 2025 Closet, All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts (optional for transitions) -->
+  <script>
+    window.onload = () => {
+      const topClothing = document.getElementById("topClothing");
+      const bottomClothing = document.getElementById("bottomClothing");
+      topClothing.style.top = "0";
+      bottomClothing.style.bottom = "0";
+    }
+  </script>
+
+</body>
+</html>

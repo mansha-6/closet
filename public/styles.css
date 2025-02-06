@@ -1,0 +1,169 @@
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8; /* Soft background color */
+    color: #2d3748;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  /* Navbar */
+  nav {
+    background-color: #1a202c; /* Dark background for navbar */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    height: 55px;
+  }
+  
+  nav h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  
+  nav .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  nav .nav-links a {
+    color: #3e7da6;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  nav .nav-links a:hover {
+    color: #8398a7; /* Light blue on hover */
+  }
+  
+  /* Hero Section */
+  header {
+    position: relative;
+    text-align: center;
+    padding: 5rem 0;
+    background-color: #ffffff;
+  }
+  
+  header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d3748;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+    color: #4a5568;
+  }
+  
+  button {
+    padding: 0.75rem 2rem;
+    border-radius: 0.375rem;
+    background-color: #dfe7ed;
+    color: rgb(19, 4, 4);
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  button:hover {
+    background-color: #abadae;
+  }
+  
+  /* Features Section */
+  section#features {
+    padding: 6rem 2rem;
+    background-color: #f9fafb;
+    text-align: center;
+  }
+  
+  section#features h3 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+  
+  section#features .grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  section#features .feature-item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  section#features .feature-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+  }
+  
+  section#features .feature-item h4 {
+    font-size: 1.5rem;
+    color: #3182ce;
+    margin-top: 1rem;
+  }
+  
+  /* Background Animation for Clothing */
+  #topClothing, #bottomClothing {
+    transition: top 1s ease-in-out, bottom 1s ease-in-out;
+    position: absolute;
+    width: 200px;
+  }
+  
+  #topClothing {
+    top: -100px;
+    left: 90%;
+    transform: translateX(-50%);
+  }
+  
+  #bottomClothing {
+    bottom: -100px;
+    left: 90%;
+    transform: translateX(-50%);
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #1a202c;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 1rem;
+    color: #e4e7ed;
+    height: 10px;
+  }
+  
+  footer a {
+    color: #3182ce;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header h2 {
+      font-size: 2.5rem;
+    }
+    
+    header p {
+      font-size: 1rem;
+    }
+  
+    nav .nav-links {
+      gap: 1rem;
+    }
+  }
+  
