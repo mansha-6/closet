@@ -12,9 +12,11 @@
   <nav class="bg-blue-500 py-2 px-8 flex justify-between items-center fixed w-full top-0 left-0 z-20">
     <h1 class="text-xl font-semibold text-white">Closet</h1>
     <div class="space-x-6">
-      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
-        Features
-      </button>
+      <a href="#features">
+        <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
+          Features
+        </button>
+      </a>
       <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
         Contact Us
       </button>
@@ -29,9 +31,17 @@
 
   <!-- Hero Section with Dynamic Background -->
   <header class="relative text-center py-20 px-6 mt-16 z-10">
-    <div class="absolute inset-0 flex justify-center items-center z-0">
-      <img src="images/top.png" alt="Top" class="absolute transition-all duration-1000" id="topClothing"/>
-      <img src="images/pants.png" alt="Bottom" class="absolute transition-all duration-1000" id="bottomClothing"/>
+    <div class="absolute inset-0 flex justify-between items-center z-0">
+      <!-- Right Side Clothing -->
+      <div class="relative">
+        <img src="images/wt.jpg" alt="Top" class="absolute transition-all duration-1000" id="topClothing"/>
+        <img src="images/Wb.jpg" alt="Bottom" class="absolute transition-all duration-1000" id="bottomClothing"/>
+      </div>
+      <!-- Left Side Clothing -->
+      <div class="relative">
+        <img src="images/mt.jpg" alt="Top Left" class="absolute transition-all duration-1000" id="topClothingLeft"/>
+        <img src="images/mb.jpg" alt="Bottom Left" class="absolute transition-all duration-1000" id="bottomClothingLeft"/>
+      </div>
     </div>
     <div class="flex justify-center items-center">
       <div class="text-left max-w-xl">
@@ -39,11 +49,10 @@
         <p class="mt-4 text-lg text-gray-600">
           Try on outfits, get personalized fashion recommendations, and enhance your styling experience with Closet.
         </p>
-        <button class="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-600 transition">
+        <button class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-700 transition" style="background-color:black;color:white;">
           Explore Now
         </button>
       </div>
-    
     </div>
   </header>
 
@@ -81,6 +90,11 @@
       const bottomClothing = document.getElementById("bottomClothing");
       topClothing.style.top = "0";
       bottomClothing.style.bottom = "0";
+    
+      const topClothingLeft = document.getElementById("topClothingLeft");
+      const bottomClothingLeft = document.getElementById("bottomClothingLeft");
+      topClothingLeft.style.top = "0";
+      bottomClothingLeft.style.bottom = "0";
     }
   </script>
 
