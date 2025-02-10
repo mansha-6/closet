@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Try-On</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { margin-top: 20px; }
+        img { width: 150px; cursor: pointer; border: 2px solid black; }
+        #canvas { display: block; margin: auto; border: 1px solid black; }
+    </style>
+    
+        <link rel="stylesheet" href="styles.css">
+    
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Your Picture</h2>
+        <input type="file" id="upload" accept="image/*">
+        <canvas id="canvas"></canvas>
+        <h3>Choose a Top</h3>
+        <div id="clothes-container">
+            <img src="clothes/wt.jpg" class="clothes" onclick="applyClothes('clothes/wt.jpg', 'shirt')">
+            <img src="clothes/mt.jpg" class="clothes" onclick="applyClothes('clothes/mt.jpg', 'shirt')">
+            <img src="clothes/top.png" class="clothes" onclick="applyClothes('clothes/top.png', 'shirt')">
+        </div>
+        
+        <h3>Choose Bottoms</h3>
+        <div id="clothes-container">
+            <img src="clothes/Wb.jpg" class="clothes" onclick="applyClothes('clothes/Wb.jpg', 'pants')">
+            <img src="clothes/mb.jpg" class="clothes" onclick="applyClothes('clothes/mb.jpg', 'pants')">
+            <img src="clothes/bottom.png" class="clothes" onclick="applyClothes('clothes/bottom.png', 'pants')">
+        </div>
+        
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script>
+        const uploadInput = document.getElementById("upload");
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let userImage = new Image();
+        let selectedClothing = null;
+
+        uploadInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    userImage.onload = function () {
+                        canvas.width = userImage.width / 2;
+                        canvas.height = userImage.height / 2;
+                        ctx.drawImage(userImage, 0, 0, canvas.width, canvas.height);
+                        detectPose(); // Run pose detection after loading
+                    };
+                    userImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        async function detectPose() {
+            const pose = new Pose({
+                locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`,
+            });
+            pose.setOptions({ modelComplexity: 1, smoothLandmarks: true, minDetectionConfidence: 0.5 });
+            pose.onResults(onPoseDetected);
+            
+            await pose.send({ image: userImage });
+        }
+        function onPoseDetected(results) {
+    if (!results.poseLandmarks) return;
+
+    const landmarks = results.poseLandmarks;
+
+    // Get key points for positioning clothes
+    const leftShoulder = landmarks[11];
+    const rightShoulder = landmarks[12];
+    const leftHip = landmarks[23];
+    const rightHip = landmarks[24];
+    const leftKnee = landmarks[25];
+    const rightKnee = landmarks[26];
+
+    // Draw only user image first
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(userImage, 0, 0, canvas.width, canvas.height);
+
+    // If no clothes are selected, don't apply anything
+    if (!onPoseDetected.lastShirt && !onPoseDetected.lastPants) {
+        return;
+    }
+
+    // Calculate Shirt Position & Size
+    if (onPoseDetected.lastShirt) {
+        const shirtWidth = (rightShoulder.x - leftShoulder.x) * canvas.width * 1.5;
+        const shirtHeight = (rightHip.y - rightShoulder.y) * canvas.height * 1.2;
+        const shirtX = leftShoulder.x * canvas.width - (shirtWidth * 0.2);
+        const shirtY = leftShoulder.y * canvas.height - (shirtHeight * 0.2);
+
+        const shirtImg = new Image();
+        shirtImg.src = onPoseDetected.lastShirt;
+        shirtImg.onload = function () {
+            ctx.drawImage(shirtImg, shirtX, shirtY, shirtWidth, shirtHeight);
+        };
+    }
+
+    // Calculate Pants Position & Size
+    if (onPoseDetected.lastPants) {
+        const pantsWidth = (rightHip.x - leftHip.x) * canvas.width * 1.5;
+        const pantsHeight = (rightKnee.y - leftHip.y) * canvas.height * 1.5;
+        const pantsX = leftHip.x * canvas.width - (pantsWidth * 0.2);
+        const pantsY = leftHip.y * canvas.height - (pantsHeight * 0.2);
+
+        const pantsImg = new Image();
+        pantsImg.src = onPoseDetected.lastPants;
+        pantsImg.onload = function () {
+            ctx.drawImage(pantsImg, pantsX, pantsY, pantsWidth, pantsHeight);
+        };
+    }
+}
+
+
+function applyClothes(clothingPath, type) {
+    if (type === "shirt") {
+        onPoseDetected.lastShirt = clothingPath;
+    } else if (type === "pants") {
+        onPoseDetected.lastPants = clothingPath;
+    }
+    detectPose();
+}
+
+    </script>
+</body>
+</html>

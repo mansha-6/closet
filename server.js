@@ -1,18 +1,31 @@
 const express = require("express");
+const multer = require("multer");
+const cors = require("cors");
 const path = require("path");
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
-// Serve static files from the 'public' folder
+app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Serve the main HTML page
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+const storage = multer.diskStorage({
+    destination: "uploads/",
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
 });
 
-// Start the server
+const upload = multer({ storage });
+
+app.post("/upload", upload.single("image"), (req, res) => {
+    res.json({ filePath: `/uploads/${req.file.filename}` });
+});
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
