@@ -62,6 +62,7 @@ try here -https://closet-alpha.vercel.app/
 - **Mansha Soni**
 - **Pranjal Pandey**
 - **Vaishnavi Sagariya**
+- **Vinit Patel**
 
 ## License 📜
 This project is licensed under the **MIT License**.
