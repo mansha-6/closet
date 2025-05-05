@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Closet - Your AI-Powered Fashion Assistant</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="contact.css">
+
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans min-h-screen relative overflow-hidden">
+
+  <script>
+    window.onload = () => {
+      const topClothing = document.getElementById("topClothing");
+      const bottomClothing = document.getElementById("bottomClothing");
+      topClothing.style.top = "0";
+      bottomClothing.style.bottom = "0";
+    
+      const topClothingLeft = document.getElementById("topClothingLeft");
+      const bottomClothingLeft = document.getElementById("bottomClothingLeft");
+      topClothingLeft.style.top = "0";
+      bottomClothingLeft.style.bottom = "0";
+    }
+  </script>
+
+  <script src="contact.js"></script>
+
 
   <!-- Thin Navbar -->
   <nav class="bg-blue-500 py-2 px-8 flex justify-between items-center fixed w-full top-0 left-0 z-20">
@@ -17,15 +36,20 @@
           Features
         </button>
       </a>
+      <!-- Add a Contact Us link in the Navbar -->
+
       <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
-        Contact Us
+      <a href="contact.html">Contact Us</a> <!-- Link to contact.html -->
       </button>
+
       <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
         About
       </button>
+
       <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition">
         Get Started
       </button>
+
     </div>
   </nav>
 
