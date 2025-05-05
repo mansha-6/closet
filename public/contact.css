@@ -1,86 +1,76 @@
-/* styles.css */
-
-/* General page styles */
+/* General body styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-}
-
-/* Navigation bar styles */
-nav {
+    color: black;
+  }
+  
+  /* Navigation */
+  nav {
     background-color: #333;
     padding: 10px;
     text-align: center;
-}
-
-nav ul {
+  }
+  
+  nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-}
-
-nav ul li {
+  }
+  
+  nav ul li {
     display: inline;
     margin-right: 20px;
-}
-
-nav ul li a {
+  }
+  
+  nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
-}
-
-nav ul li a:hover {
+  }
+  
+  nav ul li a:visited {
+    color: white;
+  }
+  
+  nav ul li a:hover {
     color: #ccc;
-}
-
-/* Contact page styles */
-.contact-container {
-    margin: 20px;
+    text-decoration: none;
+  }
+  
+  /* Contact Section */
+  .contact-container {
+    margin: 40px auto;
     padding: 20px;
     background-color: #fff;
+    width: 90%;
+    max-width: 600px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.contact-container h2 {
-    margin-bottom: 15px;
-}
-
-.contact-form input, .contact-form textarea {
+    text-align: center;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
     border: 1px solid #ddd;
-}
-
-.contact-form button {
-    background-color: #333;
+  }
+  
+  .contact-form button {
+    background-color: black;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.contact-form button:hover {
-    background-color: #555;
-}
-
-a {
-    text-decoration: none;
-    color: white;
   }
   
-  a:visited {
-    color: black;
-  }
-  
-  a:hover {
-    color: white;
-    text-decoration: none;
+  .contact-form button:hover {
+    background-color: gray;
   }
   

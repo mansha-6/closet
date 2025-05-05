@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Tone Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { margin-top: 20px; }
+        img { width: 150px; cursor: pointer; border: 2px solid black; }
+        #canvas { display: block; margin: auto; border: 1px solid black; }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Your Picture</h2>
+        <input type="file" id="upload" accept="image/*">
+        <canvas id="canvas"></canvas>
+        <h3>Detect Your Skin Tone</h3>
+        <button id="detect-tone">Detect Skin Tone</button>
+        <p id="tone-result"></p>
+        <h3>Recommended Colors</h3>
+        <p id="color-recommendation"></p>
+    </div>
+    <script>
+        const uploadInput = document.getElementById("upload");
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const detectButton = document.getElementById("detect-tone");
+        const toneResult = document.getElementById("tone-result");
+        const colorRecommendation = document.getElementById("color-recommendation");
+        let userImage = new Image();
+
+        uploadInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    userImage.onload = function () {
+                        canvas.width = userImage.width / 2;
+                        canvas.height = userImage.height / 2;
+                        ctx.drawImage(userImage, 0, 0, canvas.width, canvas.height);
+                    };
+                    userImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        detectButton.addEventListener("click", function () {
+            // Placeholder logic for detecting skin tone
+            const tones = ["Cool", "Warm"];
+            const detectedTone = tones[Math.floor(Math.random() * tones.length)];
+            toneResult.textContent = `Detected Tone: ${detectedTone}`;
+            
+            if (detectedTone === "Cool") {
+                colorRecommendation.textContent = "Best colors: Blue, Purple, Silver, Emerald Green.";
+            } else {
+                colorRecommendation.textContent = "Best colors: Red, Orange, Gold, Olive Green.";
+            }
+        });
+    </script>
+</body>
+</html>
